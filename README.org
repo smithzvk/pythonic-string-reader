@@ -60,8 +60,33 @@ another four consecutive double quotes.  This is particularly useful if you want
 to trick your text editor into treating the string you are writing as normal
 code instead of a string.
 
+*** Examples
+
+Note that in these examples I still balance quotes.  This is needed so that
+Slime doesn't get confused and think there is still input to be had.  This is
+not the case when code is loaded or compiled using the =load= or =compile-file=
+commands (which is what users will experience).
+
+#+begin_src
+CL-USER> """ hello\ """
+" hello\\ "
+CL-USER> """ hello\ """" "
+" "
+CL-USER> """hello"""
+"hello"
+CL-USER> """ \ """
+" \\ "
+CL-USER> """ " " """
+" \" \" "
+CL-USER> """" hello """"
+" hello "
+CL-USER> """" hello """ " """"
+" hello \"\"\" \" "
+#+end_src
+
 ** TODO
 
 Perhaps I will integrate with CL-Syntactic-Sugar in the future, as that used to
 be a way to wrangle all of these reader macros in a sane way.  I feel like
 Named-Readtables has accomplished this in a cleaner way though.
+
