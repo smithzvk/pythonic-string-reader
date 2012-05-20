@@ -3,7 +3,8 @@
   (:use :cl :named-readtables)
   (:export
    #:enable-pythonic-string-syntax
-   #:pythonic-string-syntax))
+   #:pythonic-string-syntax
+   #:disable-pythonic-string-syntax))
 
 ;; Modified by code by Yury Sulsky
 
