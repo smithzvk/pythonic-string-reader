@@ -5,4 +5,4 @@
 simple string literal definition that doesn't require escaping characters."
   :components ((:file "pythonic-string-reader"))
   :serial t
-  :depends-on (:named-readtables) )
+  :depends-on (:named-readtables))

@@ -3,7 +3,7 @@
   (:use :cl :named-readtables)
   (:export
    #:enable-pythonic-string-syntax
-   #:pythonic-string-syntax ))
+   #:pythonic-string-syntax))
 
 ;; Modified by code by Yury Sulsky
 
@@ -42,7 +42,7 @@
       (read-char stream)
 
       (when (not (char= #\" (peek-char nil stream)))
-        (return-from read-multiline-string "") )
+        (return-from read-multiline-string ""))
       (read-char stream)
 
       ;; Eat one last quote if given.  This means that we can use three or
@@ -50,15 +50,15 @@
       (let ((four-quote-string
               (if (char= #\" (peek-char nil stream))
                   (progn (read-char stream) t)
-                  nil )))
+                  nil)))
         (do ((chars (if four-quote-string
                         (list (read-char stream)
                               (read-char stream)
                               (read-char stream)
-                              (read-char stream) )
+                              (read-char stream))
                         (list (read-char stream)
                               (read-char stream)
-                              (read-char stream) ))
+                              (read-char stream)))
                     (cdr (nconc chars (list (read-char stream))))))
             ((every #'(lambda (c) (eq c #\")) chars)
              (coerce (nreverse buffer) 'string))
@@ -68,10 +68,10 @@
 ;; delimitation so indentation works properly
 (defreadtable pythonic-string-syntax
   (:merge :standard)
-  (:macro-char #\" #'read-multiline-string t) )
+  (:macro-char #\" #'read-multiline-string t))
 
 (defun enable-pythonic-string-syntax ()
-  (set-macro-character #\" #'read-multiline-string) )
+  (set-macro-character #\" #'read-multiline-string))
 
 (defun disable-pythonic-string-syntax ()
-  (set-macro-character #\" (get-macro-character #\" (copy-readtable nil))) )
+  (set-macro-character #\" (get-macro-character #\" (copy-readtable nil))))
