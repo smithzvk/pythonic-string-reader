@@ -34,7 +34,6 @@
         ;; Grab the original reader from the original readtable (is this the
         ;; right thing to do?  Seems like the most sane thing.)
         (get-macro-character #\" (copy-readtable nil))))
-  (declare (type function normal-string-reader))
   (defun read-multiline-string (stream c)
     (let ((buffer ()))
       (when (not (char= #\" (peek-char nil stream)))
